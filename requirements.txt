@@ -1,4 +1,4 @@
-django==1.10.5
+django==2.2.7
 pyopenssl
 requests
 chatbotAI

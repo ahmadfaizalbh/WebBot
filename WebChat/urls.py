@@ -13,19 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
+from django.urls import include, path
 from django.contrib import admin
 from webapp.views import *
-urlpatterns = [
-    url(r'^$',index,name="Home"),
-    url(r'^webhook', web_hook, name="webhook"),
-    url(r'^accounts/',include([
-        url(r'^login/$',login_user,name="login"),
-        url(r'^logout/$',logout_user, name="logout")
-        ])),
-    url(r'^admin/', admin.site.urls),
-]
+
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import settings
-if settings.DEBUG == True:
+
+urlpatterns = [
+    path("webhook/", web_hook, name="webhook"),
+    path("accounts/", include([
+        path("login/", login_user, name="login"),
+        path("logout/", logout_user, name="logout")
+        ])),
+    path("admin", admin.site.urls),
+    path('', index, name="Home"),
+]
+
+if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
