@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.container {
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.bot {
+  border-color: #dedede;
+  background-color: #f1f1f1;
+}
+.user {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container .img {
+  max-width: 60px;
+  height:60px;
+  width: 60px;
+  background-size: cover;
+  border-radius: 50%;
+  }
+
+.bot .img {
+  float: left;
+  margin-right: 20px;
+  background-image: url('https://www.w3schools.com/w3images/bandmember.jpg');
+}
+
+.user .img {
+  float: right;
+  margin-left: 20px;
+  background-image: url('https://www.w3schools.com/w3images/avatar_g2.jpg');
+}
+
+.bot .time {
+  float: right;
+  color: #aaa;
+}
+
+.user .time {
+  float: left;
+  color: #999;
+}
+
+.input_msg_write input {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: #4c4c4c;
+  font-size: 15px;
+  min-height: 48px;
+  width: 100%;
+}
+
+.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+.msg_send_btn {
+  background: #05728f none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: 33px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  width: 33px;
+}
+#chatContainer {height: calc( 100vh - 125px );overflow-y: auto;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h2>Web UI for ChatBotAI</h2>
+  <div id="chatContainer">
+    <div id="chatwindow">
+    </div>
+  </div>
+  <div class="type_msg">
+    <div class="input_msg_write">
+      <input type="text" class="write_msg" placeholder="Type a message" />
+      <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+    </div>
+  </div>
+<script>
+    let LAST_MESSAGE_ID=0;
+    function html_text(str){ let elt = document.createElement('span'); elt.textContent = str; return elt.innerHTML.replace(/(\n)+/g,"<br>");}
+    function show_message(msg){
+        $("#chatwindow").append($('<div id="msg'+msg.id+'" class="container '+msg.by+'"><div class="img"/><p>'+html_text(msg.text)+'</p><span class="time">'+msg.created+'</span></div>'));
+        LAST_MESSAGE_ID=msg.id;
+      $("#chatContainer").animate({ scrollTop: $("#chatwindow").height()+125 }, 100);
+  }
+  $(".write_msg").prop('disabled', true);
+  $(".msg_send_btn").prop('disabled', true);
+  $.get("{% url 'webhook' %}",
+  {},
+  function(data, status){
+    data.messages.forEach(show_message);
+    $(".write_msg").prop('disabled', false);
+    $(".msg_send_btn").prop('disabled', false);
+  });
+  function request_msg(){
+    var val=$(".write_msg").val().trim();
+    if(val){
+      $(".write_msg").prop('disabled', true);
+      $(".msg_send_btn").prop('disabled', true);
+      $.post("{% url 'webhook' %}",
+      {
+        "last_message_id":LAST_MESSAGE_ID,
+        "message":val
+       },
+      function(data, status){
+        data.messages.forEach(show_message);
+        $(".write_msg").val("");
+        $(".write_msg").prop('disabled', false);
+        $(".msg_send_btn").prop('disabled', false);
+      });
+    }
+  }
+  $('input.write_msg').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+        request_msg();
+    }
+});
+  $('.msg_send_btn').click(request_msg);
+</script>
+
+
+</body>
+</html>
