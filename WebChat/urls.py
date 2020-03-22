@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.urls import include, path
 from django.contrib import admin
-from webapp.views import *
+from django.chatbot.views import web_hook
+from webapp.views import index, login_user, logout_user
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import settings

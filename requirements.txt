@@ -4,3 +4,5 @@ requests
 chatbotAI
 lxml
 wikipedia
+django-chatbot
+
