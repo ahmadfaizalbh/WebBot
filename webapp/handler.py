@@ -166,9 +166,6 @@ class MyChat(Chat):
         self._memory = UserSession(UserMemory, self._memory)
         self.conversation = UserSession(UserConversation, self.conversation)
         self.topic.topic = UserTopic(self.topic.topic)
-        
-    def start_new_session(self, *arg, **kwarg):
-        return super().start_new_session(*arg, **kwarg)
 
 
 def initiate_chat(*arg, **kwargs):
