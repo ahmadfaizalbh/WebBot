@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 
 @register_call("whoIs")
-def get_info(query, sessionID="general"):
+def get_info(query, session_id="general"):
     try:
         return wikipedia.summary(query)
     except:
@@ -91,7 +91,7 @@ def web_hook(request):
                                     'substitute': True}
             chat.conversation[sender_id].append_user(message)
             message = message.rstrip(".! \n\t")
-            result = chat.respond(message, sessionID=sender_id)
+            result = chat.respond(message, session_id=sender_id)
             chat.conversation[sender_id].append_bot(result)
             del chat.attr[sender_id]
     msgs = Conversation.objects.filter(sender__messengerSenderID=sender_id)
@@ -109,6 +109,3 @@ def web_hook(request):
                       "by": "bot" if msg.bot else "user"
                       } for msg in msgs]
         })
-
-
-
