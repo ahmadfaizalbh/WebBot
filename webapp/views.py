@@ -1,6 +1,5 @@
-
 from .handler import initiate_chat
-from chatbot import reflections, multiFunctionCall
+from chatbot import register_call
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -15,6 +14,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
+@register_call("whoIs")
 def get_info(query, sessionID="general"):
     try:
         return wikipedia.summary(query)
@@ -28,15 +28,10 @@ def get_info(query, sessionID="general"):
     return "I don't know about " + query
 
 
-call = multiFunctionCall({"whoIs": get_info})
+current_dir = os.path.dirname(os.path.abspath(__file__))
+template_file_path = os.path.join(current_dir, "chatbotTemplate", "webbot.template")
 
-
-chat = initiate_chat(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                  "chatbotTemplate",
-                                  "webbot.template"
-                                  ),
-                     reflections,
-                     call=call)
+chat = initiate_chat(template_file_path)
 
 
 def authenticate(username, password):
