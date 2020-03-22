@@ -37,10 +37,8 @@ class UserMemory:
 
     def __contains__(self, key):
         return Memory.objects.filter(sender__messengerSenderID=self.senderID, key=key)
-        
-        
-    
-    
+
+
 class UserConversation:
 
     def __init__(self, senderID, *args):
@@ -169,8 +167,8 @@ class MyChat(Chat):
         self.conversation = UserSession(UserConversation, self.conversation)
         self.topic.topic = UserTopic(self.topic.topic)
         
-    def start_new_session(self, *arg, **karg):
-        return self._startNewSession(*arg, **karg)
+    def start_new_session(self, *arg, **kwarg):
+        return super().start_new_session(*arg, **kwarg)
 
 
 def initiate_chat(*arg, **kwargs):
