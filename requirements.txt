@@ -1,8 +1,8 @@
 django==2.2.13
 pyopenssl
 requests
-chatbotAI
+chatbotAI==0.3.0.0
 lxml
 wikipedia
-django-chatbot
+django-chatbot==0.0.2.2
 
