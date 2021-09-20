@@ -1,3 +1,10 @@
+# Setup
+```bash
+git clone https://github.com/ahmadfaizalbh/WebBot.git
+cd WebBot
+pip install -r requirements.txt
+```
+
 # Initialize
 ```bash
 python manage.py makemigrations
