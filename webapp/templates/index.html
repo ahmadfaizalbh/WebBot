@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "./header.html" %}
+{% block title %}Home{% endblock %}
+{% block header %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 0 20px;
-}
 
 .container {
   border: 2px solid;
   border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
+  margin: 10px auto;
+  max-width: 800px;
+  padding: 20px;
 }
 .bot {
   border-color: #dedede;
@@ -84,12 +79,12 @@ body {
   top: 11px;
   width: 33px;
 }
-#chatContainer {height: calc( 100vh - 125px );overflow-y: auto;}
+#chatContainer {height: calc( 100vh - 220px );overflow-y: auto;}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
 
+{% endblock %}
+
+{% block content %}
   <h2>Web UI for ChatBotAI</h2>
   <div id="chatContainer">
     <div id="chatwindow">
@@ -107,7 +102,7 @@ body {
     function show_message(msg){
         $("#chatwindow").append($('<div id="msg'+msg.id+'" class="container '+msg.by+'"><div class="img"/><p>'+html_text(msg.text)+'</p><span class="time">'+msg.created+'</span></div>'));
         LAST_MESSAGE_ID=msg.id;
-      $("#chatContainer").animate({ scrollTop: $("#chatwindow").height()+125 }, 100);
+      $("#chatContainer").animate({ scrollTop: $("#chatwindow").height()+220 }, 100);
   }
   $(".write_msg").prop('disabled', true);
   $(".msg_send_btn").prop('disabled', true);
@@ -144,7 +139,4 @@ body {
 });
   $('.msg_send_btn').click(request_msg);
 </script>
-
-
-</body>
-</html>
+{% endblock %}

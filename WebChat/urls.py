@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import include, path
 from django.contrib import admin
 from django.chatbot.views import web_hook
-from webapp.views import index, login_user, logout_user
+from webapp.views import index, login_user, logout_user, register_request, contact
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import settings
@@ -25,8 +25,10 @@ urlpatterns = [
     path("webhook/", web_hook, name="webhook"),
     path("accounts/", include([
         path("login/", login_user, name="login"),
-        path("logout/", logout_user, name="logout")
+        path("logout/", logout_user, name="logout"),
+        path("register/", register_request, name="register")
         ])),
+    path("contact/", contact, name="contact"),
     path("admin", admin.site.urls),
     path('', index, name="Home"),
 ]

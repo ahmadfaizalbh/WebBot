@@ -23,3 +23,7 @@ python manage.py runserver
 
 # In Brouser
 open http://localhost:8000
+
+# Live Replit
+https://webbot.ahmadfaizal.repl.co/
+

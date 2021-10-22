@@ -1,0 +1,24 @@
+{% extends 'header.html' %}
+{% block title %}Contact Us{% endblock %}
+  {% block content %}
+
+		{% load crispy_forms_tags %}	
+
+		<!--Contact form-->
+		<div class="container p-5">
+			<h1>Contact</h1>
+			<h4>Contact us directly if you have any questions</h4>
+			<p>
+				Please write your name, email address and a message below if you have any questions.
+				One of our staff members will be happy to contact you directly and answer your questions as soon as possible. 
+			</p>
+			<form method="post">
+	        {% csrf_token %}
+	            {{form|crispy}}
+	            <button class="btn btn-primary" type="submit">Submit</button>
+	        </form>
+	    </div>
+
+
+
+  {% endblock %}

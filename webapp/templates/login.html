@@ -14,7 +14,7 @@
 	<!-- Main HTML -->
 <body>
 	<!-- Begin Page Content -->
-	<div id="container" style="height: 325px;margin-top: -164px;">
+	<div id="container" style="height: 342px;margin-top: -164px;">
 		<h2 style="text-align: center;font-size: 42px;top: 12px;position: relative;">Login</h2>
 		<form name="LoginForm" action="{% url 'login' %}" method="post">
         {% csrf_token %}
@@ -23,6 +23,7 @@
 		<input type="name" id="username" name="username"  placeholder="Username">
 		<label for="password" style="font-family: 'Cormorant Garamond', serif;font-size: 16px;">Password:</label>
 		<input type="password" name="password" id="password" placeholder="Password">
+      <a href="{% url 'register' %}" style="font-family: 'Cormorant Garamond', serif;font-size: 13px;color: #b7b7b7;background: white;margin-left: 16px;">Create New User?</a>
 		<div id="lower">
 		<input type="submit" value="Login">
 		<code>{{error}}</code>
