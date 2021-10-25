@@ -93,7 +93,7 @@ def contact(request):
 			message = "\n".join(body.values())
 
 			try:
-				send_mail(subject, message, 'ahmadfaizalbh726@gmail.com', ['ahmadfaizalbh726@gmail.com']) 
+				send_mail(subject, message, 'ahmadfaizal@replit.com', ['ahmadfaizalbh726@gmail.com']) 
 			except BadHeaderError:
 				return HttpResponse('Invalid header found.')
 			return redirect ("Home")

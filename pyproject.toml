@@ -4,11 +4,18 @@ requires = ["poetry>=0.12"]
 
 [tool]
 [tool.poetry]
-authors = ["Ahmad Faizal B H <ahmadfaizalbh726@gmail.com"]
-description = ""
-name = "django-template"
+name = "WebBot"
 version = "0.1.0"
+description = "Python wikipedia & chatbotAI Based chatbot Demo app"
+authors = ["Ahmad Faizal B H <ahmadfaizalbh726@gmail.com>"]
 [tool.poetry.dependencies]
-Django = "^2.2.24"
+Django = "^3.0"
 python = "^3.8"
+chatbotAI = "0.3.1"
+wikipedia = "^1.4.0"
+django-chatbot = "0.0.2.3"
+django-crispy-forms = "1.13.0"
+pyOpenSSL = "^21.0.0"
+requests = "^2.26.0"
+lxml = "^4.6.3"
 [tool.poetry.dev-dependencies]
