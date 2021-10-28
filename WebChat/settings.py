@@ -138,3 +138,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 BACKGROUND_TASK_RUN_ASYNC = True
 CHATBOT_TEMPLATE = os.path.join(BASE_DIR, "chatbotTemplate", "webbot.template")
+CONTACT_FROM = 'from_email@domain.com'
+CONTACT_TO = ['to_email@domain.com']
