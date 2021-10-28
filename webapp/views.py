@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import NewUserForm, ContactForm
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
 import wikipedia
 import warnings
 
@@ -93,7 +96,7 @@ def contact(request):
 			message = "\n".join(body.values())
 
 			try:
-				send_mail(subject, message, 'ahmadfaizal@replit.com', ['ahmadfaizalbh726@gmail.com']) 
+				send_mail(subject, message, settings.CONTACT_FROM, settings.CONTACT_TO) 
 			except BadHeaderError:
 				return HttpResponse('Invalid header found.')
 			return redirect ("Home")
