@@ -25,5 +25,12 @@ python manage.py runserver
 open http://localhost:8000
 
 # Live Replit
-https://webbot.ahmadfaizal.repl.co/
+https://ChatBotAI-Demo.ahmadfaizal.repl.co
 
+
+### Note:-
+update `CONTACT_FROM` and `CONTACT_TO` in settings.py
+```python
+CONTACT_FROM = 'from_email@domain.com'
+CONTACT_TO = ['to_email@domain.com']
+```
