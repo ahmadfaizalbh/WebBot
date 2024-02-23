@@ -1,8 +1,9 @@
-django==2.2.28
+django==4.2
 pyopenssl
 requests
 chatbotAI==0.3.1.0
 lxml
 wikipedia
 django-chatbot==0.0.2.3
-django-crispy-forms
+django-crispy-forms==2.1
+crispy-bootstrap5==2023.10
